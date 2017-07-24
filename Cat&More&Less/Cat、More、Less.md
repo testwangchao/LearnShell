@@ -7,6 +7,20 @@
 
 3. cat -s<br>
    不输出多行空行，即将多行空行输出为一行空行
+
+4. cat file1 > file2<br>
+   将file1的内容输入到file2内，会覆盖file2的内容</br><br>
+   \>代表覆盖写入</br><br>
+   \>>代表追加写入</br>
+
+5. cat \<\<EOF > file，向file追加内容（EOF可以为任意内容，代表结束符）<br>
+   heredoc> test1</br><br>
+   heredoc> test2<br>
+   heredoc> EOF</br><br>
+   $ cat file</br><br>
+    test1</br><br>
+    test2</br>
+
 #### 二、more（一页一页显示）
 1. more -num<br>
    按行数num输出，num是需要显示的行数
