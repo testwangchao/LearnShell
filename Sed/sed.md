@@ -1,4 +1,4 @@
-####一.在命令行使用sed命令
+#### 一.在命令行使用sed命令
 1. 修改数据:将Test替换为test输出到STDOUT不改变文件的原始数据,默认情况下只能替换每行中出现的第一处
 [root@bogon LearnSed]# sed s/Test/test/ test1<br>
 This is a test1!<br>
