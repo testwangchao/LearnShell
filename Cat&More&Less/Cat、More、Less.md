@@ -14,13 +14,14 @@
    \>>代表追加写入</br>
 
 5. cat \<\<EOF > file，向file追加内容（EOF可以为任意内容，代表结束符）<br>
+   ```
    heredoc> test1</r><br>
    heredoc> test2<br>
    heredoc> EOF</br><br>
    $ cat file</br><br>
     test1</br><br>
     test2</br>
-
+   ```
 #### 二、more（一页一页显示）
 1. more -num<br>
    按行数num输出，num是每屏显示的行数
