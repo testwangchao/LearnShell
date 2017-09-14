@@ -59,4 +59,68 @@ $ find grep -name '*.txt'
 grep/grep-c.txt
 grep/test.txt
 ```
-2. -perm 按照文件权限查找
+```find -iname``` 忽略大小写
+
+2. 否定参数
+
+匹配所有不以.txt结尾的文件名
+```
+find . ! -name "*.txt" -print
+```
+
+3. 基于目录深度的搜索
+
+将find命令向下的最大深度限制为1
+```
+find . -maxdepth 1 -name "f*" -print
+```
+
+-mindepth类似于 -maxdepth，不过它设置的是find开始遍历的最小深度。
+
+4. 根据文件类型搜索
+
+搜索目录
+```
+find . -type d
+```
+|文件类型 |类型参数|
+| -----  |-------|
+|普通文件 |f|
+|符号链接 |l|
+|目录 |d|
+|字符设备 |c|
+|块设备 |b|
+|套接字 |s|
+|FIFO |p|
+
+5.删除匹配的文件
+
+-delete可以用来删除find查找到的匹配文件。
+
+删除当前目录下所有的 .swp文件：
+```
+$ find . -type f -name "*.swp" -delete
+```
+
+#### find和xargs
+
+xargs和find算是一对死党。两者结合使用可以让任务变得更轻松。不过人们通常却是以一
+种错误的组合方式使用它们。例如：
+```$ find . -type f -name "*.txt" -print | xargs rm -f```
+这样做很危险。有时可能会删除不必要删除的文件。我们没法预测分隔find命令输出结果
+的定界符究竟是什么（'\n'或者' '）。很多文件名中都可能会包含空格符（' '），因此xargs
+很可能会误认为它们是定界符（例如，hell text.txt会被xargs误解为hell和text.txt）。
+只要我们把find的输出作为xargs的输入，就必须将 -print0与find结合使用，以字符null
+（'\0'）来分隔输出。
+
+- 删除文件
+  ```
+    $ find . -type f -name "*.txt" -print0 | xargs rm -f
+  ```
+
+- 统计源代码目录中所有python文件的行数
+  ```
+  find . -type f -name '*.py' -print0 | xargs -0 wc -l
+  ```
+
+  5 ./test_porn.py

@@ -22,6 +22,8 @@
     test1</br><br>
     test2</br>
    ```
+
+6.
 #### 二、more（一页一页显示）
 1. more -num<br>
    按行数num输出，num是每屏显示的行数
